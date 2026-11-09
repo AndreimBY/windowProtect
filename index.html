@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Напыляемая защитная плёнка для окон и дверей</title>
+<meta name="description" content="Напыляемая защитная плёнка для окон, дверей и фурнитуры. Защищает от механических повреждений при монтаже и отделке, легко снимается после финишной отделки.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;800&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: одна колонка-лендинг. Сначала суть (герой), затем 3 шага, затем что защищаем, затем контакты. */
+:root{
+  --bg:#F2F6F8;
+  --surface:#FFFFFF;
+  --ink:#0E2433;
+  --muted:#4B6272;
+  --line:#D5E1E8;
+  --film:#1BA3D6;
+  --film-soft:#CDEBF7;
+  --signal:#C9480A;
+  --signal-ink:#FFFFFF;
+  --prof1:#5E7788;
+  --prof2:#3E5565;
+  --band:#0E2433;
+  --band-ink:#EAF4F9;
+  --band-muted:#9DB4C3;
+  --font-display:"Geologica","Onest",system-ui,sans-serif;
+  --font-body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1A24; --surface:#112634; --ink:#E6F1F7; --muted:#9DB4C3; --line:#23404F;
+    --film:#3DBDEB; --film-soft:#123B4E; --signal:#FF8A4C; --signal-ink:#1A0E06;
+    --prof1:#7C95A6; --prof2:#566F80;
+    --band:#071219; --band-ink:#EAF4F9; --band-muted:#9DB4C3;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1A24; --surface:#112634; --ink:#E6F1F7; --muted:#9DB4C3; --line:#23404F;
+  --film:#3DBDEB; --film-soft:#123B4E; --signal:#FF8A4C; --signal-ink:#1A0E06;
+  --prof1:#7C95A6; --prof2:#566F80;
+  --band:#071219; --band-ink:#EAF4F9; --band-muted:#9DB4C3;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--font-body);-webkit-text-size-adjust:100%}
+img,video,svg{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--film);outline-offset:3px}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.brand{font:600 15px/1.2 var(--font-display);letter-spacing:.02em;max-width:15em}
+.brand b{color:var(--film);font-weight:800}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;background:var(--signal);color:var(--signal-ink);font:600 16px/1 var(--font-body);text-decoration:none;border-radius:4px;border:0;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.top .btn{min-height:42px;padding:0 18px;font-size:15px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(24px,5vw,56px) clamp(48px,7vw,88px)}
+.hero-text{min-width:0;display:flex;flex-direction:column;gap:22px}
+.eyebrow{font:600 13px/1.3 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--film)}
+h1{font-weight:800;font-size:clamp(34px,5.6vw,64px);line-height:1.03;letter-spacing:-.01em}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--muted);max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:6px 0 0;padding:0;list-style:none;font-weight:500}
+.facts li{display:flex;align-items:center;gap:9px}
+.facts li::before{content:"";width:10px;height:10px;background:var(--film);flex:none}
+
+/* media frames: SVG-заглушка лежит под фото, если фото не загрузилось — видна она */
+.frame{position:relative;overflow:hidden;background:var(--film-soft);border-radius:4px;min-width:0}
+.frame.tall{aspect-ratio:4/5}
+.frame.sq{aspect-ratio:1/1}
+.frame > svg,.frame > img,.frame > video{position:absolute;inset:0;width:100%;height:100%;display:block}
+.frame > img,.frame > video{object-fit:cover}
+.frame > img.crop{transform:scale(1.45);transform-origin:100% 100%}
+.frame > img.crop2{transform:scale(1.4);transform-origin:100% 100%}
+.frame figcaption{position:absolute;left:0;bottom:0;right:0;padding:28px 16px 12px;background:linear-gradient(to top,rgba(7,18,25,.72),rgba(7,18,25,0));color:#fff;font:500 14px/1.3 var(--font-body)}
+figure{margin:0}
+
+/* sections */
+section{padding-block:clamp(44px,6vw,84px)}
+.sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(26px,4vw,44px);max-width:36em}
+h2{font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.08}
+.sec-head p{color:var(--muted)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px);margin:0;padding:0;list-style:none}
+.step{display:flex;flex-direction:column;gap:16px;min-width:0}
+.step .n{font:600 13px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--film)}
+h3{font-weight:600;font-size:clamp(21px,2.2vw,26px);line-height:1.15}
+.step p{color:var(--muted)}
+
+.band-surface{background:var(--surface);border-block:1px solid var(--line)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px)}
+.split > div{min-width:0}
+.split h3.sub{margin-bottom:22px;font-size:clamp(22px,2.6vw,30px)}
+.items{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
+.items li{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;padding-block:18px;border-top:1px solid var(--line)}
+.items li:last-child{border-bottom:1px solid var(--line)}
+.items svg{width:44px;height:44px;color:var(--film)}
+.items b{display:block;font:600 19px/1.25 var(--font-display);margin-bottom:3px}
+.items span{color:var(--muted)}
+.why li{grid-template-columns:14px 1fr}
+.why li::before{content:"";width:14px;height:14px;margin-top:6px;background:var(--film)}
+
+/* principle */
+.principle p{color:var(--muted);max-width:34em}
+.principle p + p{margin-top:14px}
+.spec{margin:26px 0 0;display:grid;grid-template-columns:minmax(0,9em) 1fr;gap:0 20px}
+.spec dt,.spec dd{margin:0;padding-block:14px;border-top:1px solid var(--line)}
+.spec dt{font-weight:600}
+.spec dd{color:var(--muted)}
+.spec dt:last-of-type,.spec dd:last-of-type{border-bottom:1px solid var(--line)}
+
+/* prices */
+.prices{width:100%;border-collapse:collapse;max-width:760px}
+.prices th,.prices td{padding:22px 0;border-top:1px solid var(--line);text-align:left;vertical-align:baseline}
+.prices tr:last-child th,.prices tr:last-child td{border-bottom:1px solid var(--line)}
+.prices th{font:600 clamp(18px,2.2vw,22px)/1.3 var(--font-display);padding-right:20px}
+.prices td{text-align:right;white-space:nowrap;font:800 clamp(24px,3.6vw,38px)/1.1 var(--font-display)}
+.prices td small{font:500 16px/1 var(--font-body);color:var(--muted);margin-left:6px}
+.price-cta{margin-top:28px}
+
+/* contact */
+.contact{background:var(--band);color:var(--band-ink)}
+.contact .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);align-items:center}
+.contact .wrap > div{min-width:0}
+.contact h2{margin-bottom:14px}
+.contact p{color:var(--band-muted);max-width:30em}
+.lines{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
+.lines li{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:16px;border-top:1px solid rgba(157,180,195,.3)}
+.lines li:last-child{border-bottom:1px solid rgba(157,180,195,.3)}
+.lines span{color:var(--band-muted)}
+.lines b{font:600 20px/1.3 var(--font-display);overflow-wrap:anywhere}
+footer{padding-block:22px;color:var(--muted);font-size:14px}
+
+@media (max-width:860px){
+  .hero,.split,.contact .wrap{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .hero .frame.tall{aspect-ratio:1/1;max-height:520px}
+  .brand{max-width:11em}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><b>Плёнка</b> для окон и дверей</div>
+    <a class="btn" href="#contact">Получить расчёт</a>
+  </header>
+
+  <main>
+  <div class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Защита на время отделки</span>
+      <h1>Окна и двери без царапин до сдачи объекта</h1>
+      <p class="lead">Напыляем защитную плёнку на окна, двери и фурнитуру. Она принимает на себя механические повреждения во время монтажа и отделки. Когда работы закончены, плёнку снимают.</p>
+      <div class="cta">
+        <a class="btn" href="#contact">Получить расчёт</a>
+        <a class="btn ghost" href="#how">Как это работает</a>
+      </div>
+      <ul class="facts">
+        <li>Окна</li>
+        <li>Двери</li>
+        <li>Фурнитура</li>
+      </ul>
+    </div>
+
+    <figure class="frame tall" aria-label="Защитную плёнку снимают с окна вручную">
+      <!-- Заглушка: видна, только если фото не загрузилось -->
+      <svg viewBox="0 0 400 500" role="img" aria-label="Окно под защитной плёнкой" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="500" fill="var(--film-soft)"/>
+        <rect x="70" y="80" width="260" height="340" fill="none" stroke="var(--ink)" stroke-width="14"/>
+        <rect x="77" y="87" width="246" height="326" fill="var(--surface)" opacity=".7"/>
+        <line x1="200" y1="87" x2="200" y2="413" stroke="var(--ink)" stroke-width="10"/>
+        <path d="M77 87 H260 L323 150 V413 H77 Z" fill="var(--film)" opacity=".5"/>
+        <path d="M260 87 L323 150 L270 160 Z" fill="var(--film)" opacity=".85"/>
+      </svg>
+      <img class="crop" src="https://s.alicdn.com/@sc04/kf/Hc7529bbe2d724c658a1684b28b7e6a4fd.jpg_960x960q80.jpg" alt="Защитную плёнку снимают с окна" loading="eager" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+      <figcaption>После отделки плёнку снимают вручную</figcaption>
+    </figure>
+  </div>
+  </main>
+</div>
+
+<section id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Три шага: напылить, достроить, снять</h2>
+      <p>Плёнка защищает изделия только на время строительных и отделочных работ.</p>
+    </div>
+
+    <ol class="steps">
+      <li class="step">
+        <figure class="frame sq" aria-label="Нанесение состава краскопультом">
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="400" fill="var(--film-soft)"/>
+            <path d="M120 120 L260 120 L260 150 L200 190 L120 190 Z" fill="var(--ink)" opacity=".8"/>
+            <circle cx="140" cy="260" r="46" fill="var(--film)" opacity=".5"/>
+            <circle cx="210" cy="300" r="34" fill="var(--film)" opacity=".5"/>
+          </svg>
+          <video src="https://gv.videocdn.alibaba.com/7c569251818fbca4/1AEqGKYv65nmsXBtE6w/4fZx0QlfOJPFgGp9tbi_261152163135_hd_hq.mp4?bizCode=icbu_vod_publish" autoplay muted loop playsinline preload="metadata" aria-label="Видео: напыление состава краскопультом на стекло"></video>
+        </figure>
+        <span class="n">Шаг 1</span>
+        <h3>Напыляем</h3>
+        <p>Жидкий состав на водной основе наносится краскопультом на стекло, профиль и фурнитуру. Он высыхает в сплошную плёнку.</p>
+      </li>
+
+      <li class="step">
+        <figure class="frame sq" aria-label="Схема: плёнка принимает удар на себя">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Схема: плёнка принимает удар инструмента на себя, профиль под ней остаётся целым" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="s2glow" cx="50%" cy="38%" r="60%"><stop offset="0" style="stop-color:var(--film);stop-opacity:.35"/><stop offset="1" style="stop-color:var(--film);stop-opacity:0"/></radialGradient>
+              <linearGradient id="s2prof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--prof1)"/><stop offset="1" style="stop-color:var(--prof2)"/></linearGradient>
+            </defs>
+            <rect width="400" height="400" fill="var(--film-soft)"/>
+            <rect width="400" height="400" fill="url(#s2glow)"/>
+            <ellipse cx="200" cy="352" rx="150" ry="10" fill="var(--ink)" opacity=".12"/>
+            <rect x="56" y="226" width="288" height="124" rx="8" fill="url(#s2prof)"/>
+            <rect x="76" y="252" width="72" height="72" rx="5" fill="var(--film-soft)"/>
+            <rect x="164" y="252" width="72" height="72" rx="5" fill="var(--film-soft)"/>
+            <rect x="252" y="252" width="72" height="72" rx="5" fill="var(--film-soft)"/>
+            <path d="M50 300 V236 Q50 214 72 214 H328 Q350 214 350 236 V300" fill="none" stroke="var(--film)" stroke-width="9" stroke-linecap="round"/>
+            <rect x="60" y="213" width="280" height="9" rx="4.5" fill="#fff" opacity=".45"/>
+            <g transform="translate(150 192) rotate(-18)">
+              <rect x="0" y="0" width="104" height="22" rx="3" fill="var(--surface)" stroke="var(--ink)" stroke-width="3"/>
+              <rect x="100" y="4" width="78" height="14" rx="7" fill="var(--signal)" stroke="var(--ink)" stroke-width="3"/>
+            </g>
+            <g stroke="var(--signal)" stroke-width="5" stroke-linecap="round" fill="none"><path d="M140 206 L124 188"/><path d="M134 214 L110 208"/><path d="M152 200 L146 178"/></g>
+            <g fill="var(--ink)" opacity=".55"><circle cx="116" cy="176" r="4"/><circle cx="130" cy="156" r="3"/><circle cx="98" cy="198" r="3.5"/><circle cx="150" cy="160" r="2.5"/></g>
+            <circle cx="316" cy="104" r="30" fill="var(--film)"/>
+            <path d="M301 105 L312 116 L333 91" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <figcaption>Плёнка принимает удар на себя</figcaption>
+        </figure>
+        <span class="n">Шаг 2</span>
+        <h3>Ведём работы как обычно</h3>
+        <p>Монтаж, штукатурка, покраска и уборка идут в обычном режиме. Царапины и потёртости остаются на плёнке, а не на изделии.</p>
+      </li>
+
+      <li class="step">
+        <figure class="frame sq" aria-label="Плёнку снимают с поверхности">
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="400" fill="var(--film-soft)"/>
+            <path d="M40 300 L360 300 L360 130 L220 190 L40 190 Z" fill="var(--film)" opacity=".6"/>
+          </svg>
+          <img class="crop2" src="https://s.alicdn.com/@sc04/kf/H1ed08138680a40aa9435963f4dc039534.jpg_960x960q80.jpg" alt="Плёнку снимают рукой с поверхности" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+        </figure>
+        <span class="n">Шаг 3</span>
+        <h3>Снимаем после финишной отделки</h3>
+        <p>Когда работы закончены, плёнку берут за край и снимают. Под ней чистые окна, двери и фурнитура.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="principle" id="principle" style="padding-top:0">
+  <div class="wrap split">
+    <div>
+      <h2 style="margin-bottom:22px">Как работает плёнка</h2>
+      <p>Это однокомпонентный жидкий состав на водной основе. Его наносят краскопультом, валиком или кистью, как обычную краску. Вода испаряется, и на изделии остаётся сплошная эластичная плёнка.</p>
+      <p>Плёнка работает как временная оболочка. Пыль, строительная грязь, царапины и потёртости приходятся на неё, а не на стекло, профиль и фурнитуру. Когда отделка закончена, плёнку снимают вручную, без остатка клея.</p>
+      <dl class="spec">
+        <dt>Подготовка</dt><dd>Поверхность обезжиривают и сушат.</dd>
+        <dt>Нанесение</dt><dd>Краскопульт, валик или кисть.</dd>
+        <dt>Плёнка готова</dt><dd>Около 1–2 часов при +25 °C. Полное отверждение около 12 часов.</dd>
+        <dt>Снятие</dt><dd>Вручную. При минусовой температуре не снимать: плёнка становится хрупкой.</dd>
+        <dt>Поверхности</dt><dd>Стекло, металл, пластик, окрашенные поверхности, дерево, керамика.</dd>
+      </dl>
+    </div>
+    <div>
+      <h3 class="sub" style="font-size:clamp(22px,2.6vw,30px);margin-bottom:22px">Где применяется</h3>
+      <ul class="items why">
+        <li><div><b>Алюминиевые окна и двери</b><span>Стекло, профиль и фурнитура на время монтажа и отделки.</span></div></li>
+        <li><div><b>Стеклянные фасады и витражи</b><span>Большие площади остекления, где рулонная плёнка неудобна.</span></div></li>
+        <li><div><b>Детали из нержавеющей стали</b><span>Защита от царапин и загрязнений до сдачи объекта.</span></div></li>
+        <li><div><b>Оборудование и техника</b><span>Лифты, строительная техника, окрасочные камеры, перевозка автомобилей.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band-surface">
+  <div class="wrap split">
+    <div>
+      <h3 class="sub">Что защищаем</h3>
+      <ul class="items">
+        <li>
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="7" y="5" width="30" height="34"/><line x1="22" y1="5" x2="22" y2="39"/><line x1="7" y1="22" x2="37" y2="22"/></svg>
+          <div><b>Окна</b><span>Стекло и профиль.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="10" y="4" width="24" height="36"/><circle cx="29" cy="23" r="2.2" fill="currentColor"/></svg>
+          <div><b>Двери</b><span>Полотно и коробка.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="22" r="5"/><path d="M17 22 H36 V27"/></svg>
+          <div><b>Фурнитура</b><span>Ручки, петли, замки.</span></div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="sub">Почему напыление</h3>
+      <ul class="items why">
+        <li><div><b>Сплошной слой</b><span>Состав ложится на профиль, углы и ручки без стыков и складок.</span></div></li>
+        <li><div><b>Защита от механических повреждений</b><span>Царапины и потёртости при монтаже и отделке приходятся на плёнку.</span></div></li>
+        <li><div><b>Легко снимается</b><span>После финишной отделки плёнку убирают без остатка, изделия остаются в исходном виде.</span></div></li>
+        <li><div><b>На водной основе</b><span>Формула на водной основе, наносится краскопультом.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Расценки</h2>
+      <p>Стоимость защиты изделий плёнкой.</p>
+    </div>
+    <!-- ЗАПОЛНИТЕ суммы: замените «…» в трёх строках ниже -->
+    <table class="prices">
+      <tbody>
+        <tr><th scope="row">Окно стандартное</th><td>… <small>руб</small></td></tr>
+        <tr><th scope="row">Дверь стандартная</th><td>… <small>руб</small></td></tr>
+        <tr><th scope="row">Заполнения площадью более 10&nbsp;м²</th><td>… <small>руб/м²</small></td></tr>
+      </tbody>
+    </table>
+    <div class="price-cta"><a class="btn" href="#contact">Рассчитать мой объект</a></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Расскажите об объекте, посчитаем защиту</h2>
+      <p>Назовите, сколько окон и дверей нужно защитить и когда начинаются отделочные работы. Ответим с расчётом.</p>
+    </div>
+    <!-- ЗАМЕНИТЕ значения ниже на свои контакты -->
+    <ul class="lines">
+      <li><span>Телефон</span><b>+375 (__) ___-__-__</b></li>
+      <li><span>Эл. почта</span><b>mail@example.by</b></li>
+      <li><span>Город</span><b>Минск</b></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Напыляемая защитная плёнка для окон и дверей</div>
+</footer>
+
+</body>
+</html>
